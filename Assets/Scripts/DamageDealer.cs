@@ -13,7 +13,7 @@ public class DamageDealer {
     }
     
     public void OnCollision(Collider2D other) {
-        if (other.gameObject.CompareTag(_ignoredTag)) {
+        if (other.gameObject.CompareTag(_ignoredTag) || other.gameObject.CompareTag("IgnoreCollisions")) {
             return;
         }
 

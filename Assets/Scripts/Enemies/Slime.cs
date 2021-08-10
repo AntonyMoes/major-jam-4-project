@@ -8,8 +8,10 @@ public class Slime : EnemyController {
     [SerializeField] float speed;
     [SerializeField] float jumpRange;
     [SerializeField] float jumpTime;
-    
+    [SerializeField] float jumpCooldown;
+
     bool _isJumping;
+    float _currentCooldown;
     Coroutine _jumpCoro;
     Rigidbody2D _rb;
 
@@ -18,9 +20,12 @@ public class Slime : EnemyController {
         
         _rb = GetComponent<Rigidbody2D>();
         GetComponent<Health>().OnDeath += () => {
-            StopCoroutine(_jumpCoro);
-            _isJumping = false;
+            if (_isJumping) {
+                StopCoroutine(_jumpCoro);
+                _isJumping = false;
+            }
 
+            _rb.velocity = Vector2.zero;
             gameObject.SetActive(false);
         };
     }
@@ -29,16 +34,18 @@ public class Slime : EnemyController {
         if (_isJumping) {
             return;
         }
-        
-        var direction = PlayerDirection;
-        
-        if (PlayerDistance <= jumpRange) {
-            _isJumping = true;
-            _jumpCoro = StartCoroutine(Jump(direction));
-            return;
-        }
 
         _rb.velocity = PlayerDirection * speed;
+    }
+
+    void Update() {
+        _currentCooldown = Mathf.Max(0, _currentCooldown - Time.deltaTime);
+        
+        if (PlayerDistance <= jumpRange && _currentCooldown == 0) {
+            _isJumping = true;
+            _currentCooldown = jumpCooldown;
+            _jumpCoro = StartCoroutine(Jump(PlayerDirection));
+        }
     }
 
     IEnumerator Jump(Vector2 direction) {

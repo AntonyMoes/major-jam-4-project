@@ -2,15 +2,17 @@
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Health))]
 public class PlayerController : MonoBehaviour {
-    Vector2 _moveDirection;
-    Vector2 _aimDirection;
-    Vector2 _lastAimDirection;
-    bool _shoot;
-
     [SerializeField] Transform crosshair;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] InputDetector inputDetector;
     [SerializeField] float speed;
+
+    public Respawn respawn;
+    
+    Vector2 _moveDirection;
+    Vector2 _aimDirection;
+    Vector2 _lastAimDirection;
+    bool _shoot;
 
     Camera _mainCamera;
     Rigidbody2D _rb;
@@ -20,8 +22,11 @@ public class PlayerController : MonoBehaviour {
         _lastAimDirection = transform.forward;
         _rb = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
-        GetComponent<Health>().OnDeath += () => {
-            gameObject.SetActive(false);
+        var health = GetComponent<Health>();
+        health.OnDeath += () => {
+            // gameObject.SetActive(false);
+            gameObject.transform.position = (Vector2) respawn.transform.position;
+            health.AddHealth(health.MaxHealth);
         };
     }
 
