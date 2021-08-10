@@ -3,25 +3,25 @@
  using System.Collections;
  
  public class InputDetector : MonoBehaviour {
-     public enum EInputState {
+     public enum InputState {
          MouseKeyboard,
          Controller
      };
      
-     EInputState _state = EInputState.MouseKeyboard;
-     public EInputState State => _state;
+     InputState _state = InputState.MouseKeyboard;
+     public InputState State => _state;
      public const string ControllerPrefix = "Controller";
 
      void OnGUI() {
          switch(_state) {
-             case EInputState.MouseKeyboard:
+             case InputState.MouseKeyboard:
                  if(IsControllerInput()) {
-                     _state = EInputState.Controller;
+                     _state = InputState.Controller;
                  }
                  break;
-             case EInputState.Controller:
+             case InputState.Controller:
                  if (IsMouseKeyboard()) {
-                     _state = EInputState.MouseKeyboard;
+                     _state = InputState.MouseKeyboard;
                  }
                  break;
              default:

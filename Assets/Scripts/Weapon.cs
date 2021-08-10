@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour {
     }
 
     public void Aim(Vector2 direction) {
-        if (inputDetector.State == InputDetector.EInputState.Controller && direction == Vector2.zero) {
+        if (inputDetector.State == InputDetector.InputState.Controller && direction == Vector2.zero) {
             var velocity = _rb.velocity;
             direction = velocity == Vector2.zero ? _lastAimDirection : velocity.normalized;
         }
@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour {
         crosshair.position = transform.position + (Vector3) direction;
     }
     
-    public void Shoot(Vector2 direction) {
+    public void Shoot() {
         if (_currentCooldown != 0 || Ammo <= 0) {
             return;
         }
@@ -61,6 +61,6 @@ public class Weapon : MonoBehaviour {
         Ammo--;
         
         var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectile.GetComponent<ProjectileController>().Init(tag, direction.normalized);
+        projectile.GetComponent<ProjectileController>().Init(tag, _lastAimDirection.normalized);
     }
 }

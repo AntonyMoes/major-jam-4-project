@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour {
         
         _weapon.Aim(_aimDirection);
         if (_shoot) {
-            _weapon.Shoot(_aimDirection);
+            _weapon.Shoot();
         }
     }
 
-    void GetInputs(InputDetector.EInputState inputState) {
+    void GetInputs(InputDetector.InputState inputState) {
         var prefix = "";
-        if (inputState == InputDetector.EInputState.Controller) {
+        if (inputState == InputDetector.InputState.Controller) {
             prefix = InputDetector.ControllerPrefix;
         }
         
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
         var moveVertical = Input.GetAxisRaw(prefix + "MoveVertical");
         _moveDirection = new Vector2(moveHorizontal, moveVertical);
 
-        if (inputState == InputDetector.EInputState.MouseKeyboard) {
+        if (inputState == InputDetector.InputState.MouseKeyboard) {
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _aimDirection = mousePos - transform.position;
         }
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
             _aimDirection = new Vector2(lookHorizontal, lookVertical);
         }
 
-        _shoot = Input.GetButton("Fire1");
+        _shoot = Input.GetButton("Fire");
     }
 
     void FixedUpdate() {
