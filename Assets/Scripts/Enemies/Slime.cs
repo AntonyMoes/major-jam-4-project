@@ -13,6 +13,7 @@ public class Slime : EnemyController {
     bool _isJumping;
     float _currentCooldown;
     Coroutine _jumpCoro;
+    Tween _jumpTween;
     Rigidbody2D _rb;
 
     protected override void Start() {
@@ -22,6 +23,7 @@ public class Slime : EnemyController {
         GetComponent<Health>().OnDeath += () => {
             if (_isJumping) {
                 StopCoroutine(_jumpCoro);
+                _jumpTween?.Kill();
                 _isJumping = false;
             }
 
@@ -58,10 +60,10 @@ public class Slime : EnemyController {
         
         yield return new WaitForSeconds(setupTime);
 
-        var jump = DOTween.To(() => _rb.position, (value) => _rb.position = value, _rb.position + direction * jumpRange, moveTime)
+        _jumpTween = DOTween.To(() => _rb.position, (value) => _rb.position = value, _rb.position + direction * jumpRange, moveTime)
             .SetEase(Ease.OutSine);
 
-        yield return new DOTweenCYInstruction.WaitForCompletion(jump);
+        yield return new DOTweenCYInstruction.WaitForCompletion(_jumpTween);
 
         yield return new WaitForSeconds(staggerTime);
 
