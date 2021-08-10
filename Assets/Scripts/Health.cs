@@ -7,24 +7,34 @@ public class Health : MonoBehaviour {
     public Action OnDeath;
     
     public float MaxHealth { get; private set; }
-    public float CurrentHealth { get; private set; }
+
+    float _currentHealth;
+    public float CurrentHealth {
+        get => _currentHealth;
+        private set {
+            var oldHealth = CurrentHealth;
+            _currentHealth = Mathf.Min(MaxHealth, Mathf.Max(0, value));
+            OnChangeHealth?.Invoke(oldHealth, CurrentHealth);
+        }
+    }
 
     public bool invulnerable;
 
-    void OnEnable() {
+    void Start() {
+        Init();
+    }
+
+    public void Init() {
         MaxHealth = maxHealth;
         CurrentHealth = MaxHealth;
-        OnChangeHealth?.Invoke(CurrentHealth, CurrentHealth);
     }
 
     public void AddHealth(float addedHealth) {
         if (invulnerable) {
             return;
         }
-        
-        var oldHealth = CurrentHealth;
-        CurrentHealth = Mathf.Min(MaxHealth, Mathf.Max(0, CurrentHealth + addedHealth));
-        OnChangeHealth?.Invoke(oldHealth, CurrentHealth);
+
+        CurrentHealth += addedHealth;
 
         if (CurrentHealth == 0) {
             OnDeath?.Invoke();

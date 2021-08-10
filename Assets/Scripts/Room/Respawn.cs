@@ -48,7 +48,6 @@ public class Respawn : MonoBehaviour {
     }
 
     public void Restart() {
-        Debug.Log("Restart");
         for (var i = 0; i < transform.childCount; i++) {
             var childObject = transform.GetChild(i).gameObject;
             childObject.GetComponent<Health>().OnDeath?.Invoke();

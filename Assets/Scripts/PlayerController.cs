@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Health))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Health), typeof(Weapon))]
 public class PlayerController : MonoBehaviour {
-    [SerializeField] Transform crosshair;
-    [SerializeField] GameObject projectilePrefab;
     [SerializeField] InputDetector inputDetector;
     [SerializeField] float speed;
 
@@ -11,36 +9,35 @@ public class PlayerController : MonoBehaviour {
     
     Vector2 _moveDirection;
     Vector2 _aimDirection;
-    Vector2 _lastAimDirection;
     bool _shoot;
 
     Camera _mainCamera;
     Rigidbody2D _rb;
+    Weapon _weapon;
     
 
     void Start() {
-        _lastAimDirection = transform.forward;
         _rb = GetComponent<Rigidbody2D>();
         _mainCamera = Camera.main;
+        
         var health = GetComponent<Health>();
         health.OnDeath += () => {
             // gameObject.SetActive(false);
             gameObject.transform.position = (Vector2) respawn.transform.position;
-            health.AddHealth(health.MaxHealth);
+            health.Init();
+            _weapon.Init();
         };
+
+        _weapon = GetComponent<Weapon>();
     }
 
-    float _cooldown;
     void Update() {
         GetInputs(inputDetector.State);
         
-        Aim(_aimDirection);
-        if (_shoot && _cooldown == 0) {
-            Shoot(_aimDirection);
-            _cooldown = 0.3f;
+        _weapon.Aim(_aimDirection);
+        if (_shoot) {
+            _weapon.Shoot(_aimDirection);
         }
-
-        _cooldown = Mathf.Max(0, _cooldown - Time.deltaTime);
     }
 
     void GetInputs(InputDetector.EInputState inputState) {
@@ -77,20 +74,5 @@ public class PlayerController : MonoBehaviour {
         }
         
         _rb.velocity = direction.normalized * speed;
-    }
-
-    void Aim(Vector2 direction) {
-        if (inputDetector.State == InputDetector.EInputState.Controller && direction == Vector2.zero) {
-            var velocity = _rb.velocity;
-            direction = velocity == Vector2.zero ? _lastAimDirection : velocity.normalized;
-        }
-        _lastAimDirection = direction;
-
-        crosshair.position = transform.position + (Vector3) direction;
-    }
-    
-    void Shoot(Vector2 direction) {
-        var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectile.GetComponent<ProjectileController>().Init(tag, direction.normalized);
     }
 }
