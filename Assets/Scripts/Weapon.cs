@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour {
         get => _ammo;
         set {
             var oldAmmo = _ammo;
-            _ammo = value;
+            _ammo = Mathf.Min(MaxAmmo, value);
             OnAmmoChange?.Invoke(oldAmmo, _ammo);
         }
     }
