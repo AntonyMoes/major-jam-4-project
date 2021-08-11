@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Health), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Slime : EnemyController {
     [SerializeField] float speed;
     [SerializeField] float jumpRange;
