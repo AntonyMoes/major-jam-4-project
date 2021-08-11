@@ -15,12 +15,7 @@ public abstract class CorruptDispenserController : EnemyController {
 
         _rb = GetComponent<Rigidbody2D>();
         GetComponent<Health>().OnDeath += () => {
-            if (_isAttacking) {
-                _isAttacking = false;
-                StopCoroutine(_attackCoro);
-            }
-            _rb.velocity = Vector2.zero;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         };
     }
 

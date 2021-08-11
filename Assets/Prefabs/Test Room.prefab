@@ -1,27 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2039814688067656526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361129051694334228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ced1197d45f42bf8bc4dabc48e0fff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionDamage: 10
-  speed: 1.5
-  attackDistance: 3
-  attackCooldown: 4
-  attackDuration: 1.5
-  minDistance: 1
-  attackDegreeDelta: 10
-  projectileCount: 3
-  projectilePrefab: {fileID: 4034094867646834142, guid: 8dd99b4b37cfa0a438492b60bba13bfe,
-    type: 3}
 --- !u!1 &5920899585944540648
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
+  corruptedVersion: {fileID: 2796330197192786746, guid: dd64b9540a8c0474c97c9fbea7d708a5,
+    type: 3}
+  respawnTransform: {fileID: 5920899587619122239}
   dispensedHealth: 10
 --- !u!1 &5920899587250351569
 GameObject:
@@ -640,6 +621,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
+  corruptedVersion: {fileID: 4478201190461640130, guid: 547afdae86c1401438f03ac31e8119df,
+    type: 3}
+  respawnTransform: {fileID: 5920899587619122239}
   dispensedAmmo: 10
 --- !u!1 &5920899587619122233
 GameObject:
@@ -671,9 +655,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
-  - {fileID: 5920899586625732397}
   - {fileID: 2979973969839528401}
-  - {fileID: 3361129051694334231}
   m_Father: {fileID: 5920899585944540655}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -758,119 +740,12 @@ MonoBehaviour:
   doors:
   - {fileID: 5920899586021112671}
   - {fileID: 5920899586030376721}
+  healthDispensers:
+  - {fileID: 5920899586860042048}
+  ammoDispensers:
+  - {fileID: 5920899587271293948}
   _activated: 0
   _completed: 0
---- !u!1001 &1609566412004009903
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5920899587619122239}
-    m_Modifications:
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.6156863
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495163, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Name
-      value: Corrupt Ammo Dispenser
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495163, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 94fc62edfeda6ca498aa2ff97e7ec4be, type: 3}
---- !u!1 &3361129051694334228 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4103752393682495163, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-    type: 3}
-  m_PrefabInstance: {fileID: 1609566412004009903}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3361129051694334231 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-    type: 3}
-  m_PrefabInstance: {fileID: 1609566412004009903}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4915414746010657039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -891,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 7885223652463786206, guid: afd0e2a16fabc744f933cf3f3e8f362e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7885223652463786206, guid: afd0e2a16fabc744f933cf3f3e8f362e,
         type: 3}
@@ -960,109 +835,4 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7885223652463786206, guid: afd0e2a16fabc744f933cf3f3e8f362e,
     type: 3}
   m_PrefabInstance: {fileID: 4915414746010657039}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7698964873447725461
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5920899587619122239}
-    m_Modifications:
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.7294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495157, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.2509804
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495163, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_Name
-      value: Corrupt Health Dispenser
-      objectReference: {fileID: 0}
-    - target: {fileID: 4103752393682495163, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 94fc62edfeda6ca498aa2ff97e7ec4be, type: 3}
---- !u!4 &5920899586625732397 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4103752393682495160, guid: 94fc62edfeda6ca498aa2ff97e7ec4be,
-    type: 3}
-  m_PrefabInstance: {fileID: 7698964873447725461}
   m_PrefabAsset: {fileID: 0}

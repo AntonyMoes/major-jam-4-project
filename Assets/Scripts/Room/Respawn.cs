@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Respawn : MonoBehaviour {
     [SerializeField] Door[] doors;
+    public HealthDispenser[] healthDispensers;
+    public AmmoDispenser[] ammoDispensers;
     public bool _activated;
     public bool _completed;
     Health _playerHealth;
@@ -69,10 +71,10 @@ public class Respawn : MonoBehaviour {
 
     void Bind(GameObject player) {
         var playerController = player.GetComponent<PlayerController>();
-        if (playerController.respawn) {
-            playerController.respawn.Unbind();
+        if (playerController.Respawn) {
+            playerController.Respawn.Unbind();
         }
-        playerController.respawn = this;
+        playerController.Respawn = this;
 
         _playerHealth = player.GetComponent<Health>();
         _playerHealth.OnDeath += Restart;

@@ -1,11 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Health), typeof(Weapon))]
 public class PlayerController : MonoBehaviour {
     [SerializeField] InputDetector inputDetector;
     [SerializeField] float speed;
 
-    public Respawn respawn;
+    Respawn _respawn;
+    public Respawn Respawn {
+        get => _respawn;
+        set {
+            _respawn = value;
+            OnNewRespawn?.Invoke(_respawn);
+        }
+    }
+
+    public Action<Respawn> OnNewRespawn;
     
     Vector2 _moveDirection;
     Vector2 _aimDirection;
@@ -23,7 +33,7 @@ public class PlayerController : MonoBehaviour {
         var health = GetComponent<Health>();
         health.OnDeath += () => {
             // gameObject.SetActive(false);
-            gameObject.transform.position = (Vector2) respawn.transform.position;
+            gameObject.transform.position = (Vector2) Respawn.transform.position;
             health.Init();
             _weapon.Init();
         };

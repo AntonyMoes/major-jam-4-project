@@ -238,6 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08d3337bfbf4983916ef99b1370e257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 1423489136}
+  playerHealth: {fileID: 1423489138}
+  playerWeapon: {fileID: 1423489140}
 --- !u!4 &204566842
 Transform:
   m_ObjectHideFlags: 0
@@ -926,7 +929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDetector: {fileID: 801927052}
   speed: 6
-  respawn: {fileID: 0}
 --- !u!50 &1423489137
 Rigidbody2D:
   serializedVersion: 4

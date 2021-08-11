@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Dispenser : MonoBehaviour {
     [SerializeField] float cooldown;
+    [SerializeField] GameObject corruptedVersion;
+    [SerializeField] Transform respawnTransform;
     float _currentCooldown;
     Collider2D _collider;
 
@@ -30,6 +32,14 @@ public abstract class Dispenser : MonoBehaviour {
         _collider.enabled = false;
 
         DispenseLogic(other.gameObject);
+    }
+
+    public void Corrupt(bool corrupt) {
+        if (corrupt) {
+            Instantiate(corruptedVersion, transform.position, Quaternion.identity, respawnTransform);
+        }
+
+        gameObject.SetActive(!corrupt);
     }
 
     protected abstract void DispenseLogic(GameObject player);
